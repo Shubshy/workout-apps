@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Progress Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #workoutForm {
+      margin-bottom: 20px;
+    }
+    input, button {
+      margin-right: 10px;
+    }
+    #setsReps {
+      margin-top: 10px;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+    
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Ensure the page takes the full height */
+  html, body {
+    height: 100%;
+  }
+
+  /* Basic container styling */
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Form inputs and buttons */
+  input[type="text"], input[type="date"], button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+
+  /* List and results */
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  /* Media query for mobile devices */
+  @media (max-width: 600px) {
+    body {
+      font-size: 14px;
+    }
+
+    input[type="text"], input[type="date"], button {
+      font-size: 14px;
+    }
+
+    .container {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+
+  </style>
+</head>
+<body>
+
+<h1>Track Your Gym Progress</h1>
+
+<!-- Form to enter workout data -->
+<form id="workoutForm">
+  <input type="text" id="exercise" placeholder="Exercise" required>
+  <input type="date" id="workoutDate" required>
+  <div id="setsReps">
+    <label>Sets and Reps: </label>
+    <input type="number" class="sets" placeholder="Sets" required>
+    <input type="number" class="reps" placeholder="Reps" required>
+    <input type="number" class="weight" placeholder="Weight (kg)" required>
+    <label for="dropSet">Is this a Drop Set?</label>
+  <input type="checkbox" id="dropSet" onchange="toggleDropSetOption()">
+  
+  <div id="dropSetDetails" style="display: none;">
+    <label for="weightDrop">Weight Drop (%)</label>
+    <input type="number" id="weightDrop" placeholder="Enter Weight Drop Percentage (e.g., 20)" min="1" max="100">
+  </div>
+  
+  </div>
+  <button type="submit">Add Workout</button>
+  <button type="button" onclick="addSet()">Add Another Set</button>
+</form>
+
+  </div>
+
+</form>
+
+
+
+<h2>Progress Overview</h2>
+
+<!-- Canvas to display graph -->
+<canvas id="progressChart" width="400" height="200"></canvas>
+
+<h3>Recent Workouts</h3>
+<ul id="workoutList"></ul>
+
+<h3>Search Workouts by Exercise</h3>
+<input type="text" id="searchExercise" placeholder="Enter Exercise Name">
+<button onclick="searchByExercise()">Search</button>
+<ul id="exerciseSearchResults"></ul>
+
+
+<h3>Search Workouts by Date</h3>
+<input type="date" id="searchDate">
+<button onclick="searchByDate()">Search</button>
+<ul id="dateSearchResults"></ul>
+
+
+<script src="tracker.js"></script>
+
+</body>
+</html>
